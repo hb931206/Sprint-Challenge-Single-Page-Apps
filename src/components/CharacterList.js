@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CharacterCard from "./CharacterCard";
 
 export default function CharacterList() {
-  const [character, setcharacter] = useState([]);
+  const [characters, setCharacters] = useState([]);
   // TODO: Add useState to track data from useEffect
 
   useEffect(() => {
@@ -14,7 +15,8 @@ export default function CharacterList() {
           `https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/`
         )
         .then(response => {
-          setMovies(response.data);
+          setCharacters(response.data.results);
+          console.log(response.data.results, "response");
         })
         .catch(error => {
           console.error("Server Error", error);
@@ -26,7 +28,11 @@ export default function CharacterList() {
 
   return (
     <section className="character-list">
-      <h2>TODO: `array.map()` over your state here!</h2>
+      {characters.map(character => {
+        return (
+          <CharacterCard name={character.name} status={character.status} />
+        );
+      })}
     </section>
   );
 }
