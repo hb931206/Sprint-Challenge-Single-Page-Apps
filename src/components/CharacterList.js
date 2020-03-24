@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
+import { Link } from "react-router-dom";
+import SearchForm from "./SearchForm";
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState([]);
@@ -16,7 +18,6 @@ export default function CharacterList() {
         )
         .then(response => {
           setCharacters(response.data.results);
-          console.log(response.data.results, "response");
         })
         .catch(error => {
           console.error("Server Error", error);
@@ -30,7 +31,9 @@ export default function CharacterList() {
     <section className="character-list">
       {characters.map(character => {
         return (
-          <CharacterCard name={character.name} status={character.status} />
+          <Link>
+            <CharacterCard name={character.name} charactersarr={characters} />
+          </Link>
         );
       })}
     </section>
