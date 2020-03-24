@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function SearchForm(props) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -8,20 +9,13 @@ function SearchForm(props) {
   };
 
   useEffect(() => {
-    const result = props.characters.filter(character =>
-      character.toLowerCase().includes(searchTerm)
-    );
-    setSearchResults(result);
-  }, [searchTerm]);
-
-  useEffect(() => {
     const searchChar = () => {
       axios
         .get(
           `https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/?name=${searchTerm}`
         )
         .then(response => {
-          console.log(response, "Form Response");
+          setSearchResults(response.data.results);
         })
         .catch(error => {
           console.error("Server Error", error);
@@ -30,6 +24,13 @@ function SearchForm(props) {
 
     searchChar();
   }, []);
+
+  useEffect(() => {
+    const result = searchResults.filter(character =>
+      character.toLowerCase().includes(searchTerm)
+    );
+    setSearchResults(result);
+  }, [searchTerm]);
 
   return (
     <form className="search-form">

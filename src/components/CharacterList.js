@@ -18,6 +18,7 @@ export default function CharacterList() {
         )
         .then(response => {
           setCharacters(response.data.results);
+          console.log(response, "response");
         })
         .catch(error => {
           console.error("Server Error", error);
@@ -31,9 +32,11 @@ export default function CharacterList() {
     <section className="character-list">
       {characters.map(character => {
         return (
-          <Link>
-            <CharacterCard name={character.name} charactersarr={characters} />
-          </Link>
+          <div>
+            <Link>
+              <CharacterCard name={character.name} charactersarr={characters} />
+            </Link>
+          </div>
         );
       })}
     </section>
