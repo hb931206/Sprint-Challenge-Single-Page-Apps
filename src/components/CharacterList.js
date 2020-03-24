@@ -34,7 +34,7 @@ export default function CharacterList() {
         return (
           <div>
             <Link>
-              <CharacterCard name={character.name} charactersarr={characters} />
+              <CharacterCard name={character.name} status={character.status} />
             </Link>
           </div>
         );

@@ -4,11 +4,15 @@ import styled from "styled-components";
 const CharSubtitle = styled.h2`
   color: black;
   font-size: 45px;
-  border: 1px solid black;
 `;
 
 const CharacterCard = props => {
-  return <CharSubtitle>{props.name}</CharSubtitle>;
+  return (
+    <div>
+      <CharSubtitle>{props.name}</CharSubtitle>
+      <p>{props.status}</p>;
+    </div>
+  );
 };
 
 export default CharacterCard;
