@@ -18,7 +18,6 @@ export default function CharacterList() {
         )
         .then(response => {
           setCharacters(response.data.results);
-          console.log(response, "response");
         })
         .catch(error => {
           console.error("Server Error", error);
@@ -33,9 +32,7 @@ export default function CharacterList() {
       {characters.map(character => {
         return (
           <div>
-            <Link>
-              <CharacterCard name={character.name} status={character.status} />
-            </Link>
+            <CharacterCard name={character.name} status={character.status} />
           </div>
         );
       })}

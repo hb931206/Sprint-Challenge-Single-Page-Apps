@@ -12,7 +12,6 @@ export default function App() {
       <Header />
       <Route exact path="/" component={WelcomePage} />
       <Route exact path="/list" component={CharacterList} />
-      <Route path="/list/:id" render={props => <CharacterCard {...props} />} />
     </div>
   );
 }

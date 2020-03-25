@@ -10,7 +10,7 @@ const CharacterCard = props => {
   return (
     <div>
       <CharSubtitle>{props.name}</CharSubtitle>
-      <p>{props.status}</p>;
+      <p>{props.status}</p>
     </div>
   );
 };
