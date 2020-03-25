@@ -32,7 +32,11 @@ export default function CharacterList() {
       {characters.map(character => {
         return (
           <div>
-            <CharacterCard name={character.name} status={character.status} />
+            <CharacterCard
+              name={character.name}
+              status={character.status}
+              image={character.image}
+            />
           </div>
         );
       })}

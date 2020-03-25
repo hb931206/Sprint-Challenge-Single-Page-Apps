@@ -11,6 +11,10 @@ function SearchForm(props) {
     setSearchTerm(event.target.value);
   };
 
+  const formSubmitHandler = event => {
+    event.preventDefault();
+  };
+
   useEffect(() => {
     axios
       .get(
@@ -25,16 +29,15 @@ function SearchForm(props) {
   }, []);
 
   useEffect(() => {
-    const results = data.filter(result => {
-      console.log(result, "result");
-      result.name.includes(searchTerm);
-    });
+    const results = data.filter(result =>
+      result.name.toLowerCase().includes(searchTerm)
+    );
 
     setSearchResults(results);
   }, [searchTerm]);
 
   return (
-    <form className="search-form">
+    <div>
       <label htmlFor="character"> </label>
       <input
         type="text"
@@ -44,12 +47,11 @@ function SearchForm(props) {
         placeholder="Search Character"
       ></input>
       <ul>
-        {searchResults.map(
-          item => console.log(item, "item")
-          // <li>{CharacterCard}</li>
-        )}
+        {searchResults.map(character => (
+          <CharacterCard name={character.name} status={character.status} />
+        ))}
       </ul>
-    </form>
+    </div>
   );
 }
 

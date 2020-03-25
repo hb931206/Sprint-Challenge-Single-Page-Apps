@@ -9,6 +9,7 @@ const CharSubtitle = styled.h2`
 const CharacterCard = props => {
   return (
     <div>
+      <img alt={`${props.name}`} src={props.image} />
       <CharSubtitle>{props.name}</CharSubtitle>
       <p>{props.status}</p>
     </div>
